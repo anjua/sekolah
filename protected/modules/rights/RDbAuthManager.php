@@ -80,6 +80,40 @@ class RDbAuthManager extends CDbAuthManager
 				$command=$this->db->createCommand($sql);
 				$command->bindValue(':type', $type);
             }
-        }
+            elseif( $type===null )
+			{
+				$sql = "SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM {$this->itemTable} t1
+					LEFT JOIN {$this->assignmentTable} t2 ON name=t2.itemname
+					LEFT JOIN {$this->rightsTable} t3 ON name=t3.itemname
+					WHERE userid=:userid
+					ORDER BY t1.type DESC, weight ASC";
+				$command=$this->db->createCommand($sql);
+				$command->bindValue(':userid', $userId);
+			}
+			else
+			{
+				$sql = "SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM {$this->itemTable} t1
+					LEFT JOIN {$this->assignmentTable} t2 ON name=t2.itemname
+					LEFT JOIN {$this->rightsTable} t3 ON name=t3.itemname
+					WHERE t1.type=:type AND userid=:userid
+					ORDER BY t1.type DESC, weight ASC";
+				$command=$this->db->createCommand($sql);
+				$command->bindValue(':type', $type);
+				$command->bindValue(':userid', $userId);
+			}
+
+			$items = array();
+			foreach($command->queryAll() as $row)
+				$items[ $row['name'] ] = new CAuthItem($this, $row['name'], $row['type'], $row['description'], $row['bizrule'], unserialize($row['data']));
+		}
+		// No sorting required.
+		else
+		{
+			$items = parent::getAuthItems($type, $userId);
+		}
+
+		return $items;
     }
 }
