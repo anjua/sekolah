@@ -40,6 +40,46 @@ class RDbAuthManager extends CDbAuthManager
 
     public function getAuthItemsByNames($names, $nested=false)
     {
+        if($this->_items===array())
+            $this->_items = $this->getAuthItems();
+
+        $items = array();
+        foreach($this->_items as $name=>$item)
+        {
+            if(in_array($name, $names))
+            {
+                if($nested===true)
+                    $items[$item->gettype()][$name] = $item;
+                else
+                    $items[$name] = $item;
+            }
+        }
         
+        return $items;
+    }
+
+    public function getAuthItems($type = null, $userId = null, $sort=true)
+    {
+        if($sort===true)
+        {
+            if($type===null && $userId===null)
+            {
+                $sql = "SELECT name, t1.type, description, t1.bizrule, t1.data, weight
+                        FROM {$this->itemTable} t1
+                        LEFT JOIN {$this->rightsTable} t2 ON name=itemname
+                        ORDER BY t1.type DESC, weight ASC";
+                $command = $this->db->createCommand($sql);
+            }
+            elseif($userId===null)
+            {
+                $sql = "SELECT name, t1.type, description, t1.bizrule, t1.data, weight
+                        FROM {$this->itemTable} t1
+                        LEFT JOIN {$this->rightsTable} t2 ON name=itemname
+					    WHERE t1.type=:type
+					    ORDER BY t1.type DESC, weight ASC";
+				$command=$this->db->createCommand($sql);
+				$command->bindValue(':type', $type);
+            }
+        }
     }
 }
