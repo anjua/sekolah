@@ -160,4 +160,59 @@ class RDbAuthManager extends CDbAuthManager
             return $this->_itemChildren[$key] = $children;
         }
     }
+
+    public function getAssignmentsByItemName($name)
+	{
+		$sql = "SELECT * FROM {$this->assignmentTable} WHERE itemname=:itemname";
+		$command = $this->db->createCommand($sql);
+		$command->bindValue(':itemname', $name);
+
+		$assignments=array();
+		foreach($command->queryAll($sql) as $row)
+		{
+			if(($data=@unserialize($row['data']))===false)
+				$data=null;
+
+			$assignments[ $row['userid'] ] = new CAuthAssignment($this, $row['itemname'], $row['userid'], $row['bizrule'], $data);
+		}
+
+		return $assignments;
+	}
+
+    public function updateItemWeight($result)
+	{
+		foreach( $result as $weight=>$itemname )
+		{
+			$sql = "SELECT COUNT(*) FROM {$this->rightsTable}
+				WHERE itemname=:itemname";
+			$command = $this->db->createCommand($sql);
+			$command->bindValue(':itemname', $itemname);
+
+			// Check if the item already has a weight.
+			if( $command->queryScalar()>0 )
+			{
+				$sql = "UPDATE {$this->rightsTable}
+					SET weight=:weight
+					WHERE itemname=:itemname";
+				$command = $this->db->createCommand($sql);
+				$command->bindValue(':weight', $weight);
+				$command->bindValue(':itemname', $itemname);
+				$command->execute();
+			}
+			// Item does not have a weight, insert it.
+			else
+			{
+				if( ($item = $this->getAuthItem($itemname))!==null )
+				{
+					$sql = "INSERT INTO {$this->rightsTable} (itemname, type, weight)
+						VALUES (:itemname, :type, :weight)";
+					$command = $this->db->createCommand($sql);
+					$command->bindValue(':itemname', $itemname);
+					$command->bindValue(':type', $item->getType());
+					$command->bindValue(':weight', $weight);
+					$command->execute();
+				}
+			}
+		}
+	}
 }

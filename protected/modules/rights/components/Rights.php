@@ -31,12 +31,72 @@ class Rights
 		return $authorizer->getAuthItems(CAuthItem::TYPE_ROLE, $userId, null, $sort);
 	}
 
-    public static function getAuthorizer()
+	public static function getBaseUrl()
 	{
-		if( isset(self::$_a)===false )
-			self::$_a = self::module()->getAuthorizer();
+		$module = self::module();
+		return Yii::app()->createUrl($module->baseUrl);
+	}
 
-		return self::$_a;
+	public static function getAuthItemOptions()
+	{
+		return array(
+			CAuthItem::TYPE_OPERATION => Rights::t('core', 'Operation', null, null, null),
+			CAuthItem::TYPE_TASK => Rights::t('core', 'Task', null, null, null),
+			CAuthItem::TYPE_ROLE => Rights::t('core', 'Role', null, null, null),
+		);
+	}
+
+	public static function getAuthItemTypeName($type)
+	{
+		$options = self::getAuthItemOptions();
+		if(isset($options[$type])===true)
+			return $options[$type];
+		else
+			throw new CException(Rights::t('core', 'Invalid Authorization item type.', null, null, null));
+	}
+
+	public static function getAuthItemTypeNamePlural($type)
+	{
+		switch( (int)$type )
+		{
+			case CAuthItem::TYPE_OPERATION: return Rights::t('core', 'Operations', null, null, null);
+			case CAuthItem::TYPE_TASK: return Rights::t('core', 'Tasks', null, null, null);
+			case CAuthItem::TYPE_ROLE: return Rights::t('core', 'Roles', null, null, null);
+			default: throw new CException(Rights::t('core', 'Invalid authorization item type.', null, null, null));
+		}
+	}
+
+	public static function getAuthItemRoute($type)
+	{
+		switch( (int)$type )
+		{
+			case CAuthItem::TYPE_OPERATION: return array('authItem/operations');
+			case CAuthItem::TYPE_TASK: return array('authItem/tasks');
+			case CAuthItem::TYPE_ROLE: return array('authItem/roles');
+			default: throw new CException(Rights::t('core', 'Invalid authorization item type.', null, null, null));
+		}
+	}
+
+	public static function getValidChildTypes($type)
+	{
+	 	switch( (int)$type )
+		{
+			// Roles can consist of any type of authorization items
+			case CAuthItem::TYPE_ROLE: return null;
+			// Tasks can consist of other tasks and operations
+			case CAuthItem::TYPE_TASK: return array(CAuthItem::TYPE_TASK, CAuthItem::TYPE_OPERATION);
+			// Operations can consist of other operations
+			case CAuthItem::TYPE_OPERATION: return array(CAuthItem::TYPE_OPERATION);
+			// Invalid type
+			default: throw new CException(Rights::t('core', 'Invalid authorization item type.', null, null, null));
+		}
+	}
+
+	public static function getAuthItemSelectOptions($type=null, $exclude=array())
+	{
+		$authorizer = self::getAuthorizer();
+		$items = $authorizer->getAuthItems($type, null, null, true, $exclude);
+		return self::generateAuthItemSelectOptions($items, $type);
 	}
 
     public static function module()
@@ -60,5 +120,18 @@ class Rights
 				return $m;
 
 		return null;
+	}
+
+	public static function getAuthorizer()
+	{
+		if( isset(self::$_a)===false )
+			self::$_a = self::module()->getAuthorizer();
+
+		return self::$_a;
+	}
+
+	public static function t($category, $message, $params=array(), $source=null, $language)
+	{
+		return Yii::t('RightsModule'.$category, $message, $params, $source, $language);
 	}
 }
