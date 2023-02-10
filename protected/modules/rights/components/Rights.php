@@ -21,6 +21,16 @@ class Rights
         return $authorizer->authManager->revoke($itemName, $userId);
     }
 
+	public static function getAssignedRoles($userId=null, $sort=true)
+	{
+		$user = Yii::app()->getUser();
+		if($userId===null && $user->isGuest===false)
+			$userId = $user->id;
+		
+		$authorizer = self::getAuthorizer();
+		return $authorizer->getAuthItems(CAuthItem::TYPE_ROLE, $userId, null, $sort);
+	}
+
     public static function getAuthorizer()
 	{
 		if( isset(self::$_a)===false )
