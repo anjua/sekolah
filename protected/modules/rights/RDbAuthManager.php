@@ -116,4 +116,48 @@ class RDbAuthManager extends CDbAuthManager
 
 		return $items;
     }
+
+    public function getItemChildren($names, $allowCaching=true)
+    {
+        $key = $names===(array)$names ? implode('|', $names) : $names;
+
+        if($allowCaching && isset($this->_itemChildren[$key])===true)
+        {
+            return $this->_itemChildren[$key];
+        }
+        else
+        {
+            if(is_string($names))
+            {
+                $condition = 'parent='.$this->db->quoteValue($names);
+            }
+            elseif($names===(array)$names && $names!==array())
+            {
+                foreach ($names as &$name) 
+                    $name = $this->db->quoteValue($name);
+
+                $condition = 'parent IN ('.implode(',', $names).')';
+            }
+            else
+            {
+                $condition = '1';
+            }
+
+            $sql = "SELECT name, type, description, bizrule, data
+                    FROM {$this->itemTable}, {$this->itemChildTable}
+                    WHERE {$condition} AND name=child";
+            $children = array();
+            foreach ($this->db->createCommand($sql)->queryAll() as $row) 
+            {
+                if($data = @unserialize($row['data'])===false)
+                    $data = null;
+
+                $children[$row['name']] = new CAuthItem($this, $row['nama'], $row['type'], $row['description'], $row['bizrule'], $data);
+            }
+
+            $children = Rights::getAuthorizer()->attachAuthItemBehavior($children);
+
+            return $this->_itemChildren[$key] = $children;
+        }
+    }
 }
