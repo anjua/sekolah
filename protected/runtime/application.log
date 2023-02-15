@@ -1,0 +1,193 @@
+2023/02/12 09:19:08 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "admin/index". in C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/index')
+#1 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sekolah/index.php?r=admin/index
+---
+2023/02/12 09:19:31 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "admin/index". in C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/index')
+#1 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sekolah/index.php?r=admin/index
+---
+2023/02/12 09:19:44 [error] [exception.CException] CException: Property "UserModule.loginNotActive" is not defined. in C:\xampp\htdocs\sekolah\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\base\CModule.php(520): CComponent->__set('loginNotActive', false)
+#1 C:\xampp\htdocs\sekolah\framework\base\CModule.php(86): CModule->configure(Array)
+#2 C:\xampp\htdocs\sekolah\framework\YiiBase.php(213): CModule->__construct('user', NULL, Array)
+#3 C:\xampp\htdocs\sekolah\framework\base\CModule.php(282): YiiBase::createComponent(Array, 'user', NULL, Array)
+#4 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(337): CModule->getModule('user')
+#5 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(276): CWebApplication->createController('admin/')
+#6 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#7 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/sekolah/index.php?r=user/admin
+---
+2023/02/12 09:20:41 [error] [php] include(Rights.php): Failed to open stream: No such file or directory (C:\xampp\htdocs\sekolah\framework\YiiBase.php:463)
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\YiiBase.php(463): include()
+#1 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(142): autoload()
+#2 C:\xampp\htdocs\sekolah\framework\web\CController.php(263): UserModule->beforeControllerAction()
+#3 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): AdminController->run()
+#4 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\sekolah\index.php(13): CWebApplication->run()
+REQUEST_URI=/sekolah/index.php?r=user/admin
+in C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php (142)
+in C:\xampp\htdocs\sekolah\index.php (13)
+2023/02/12 09:21:41 [error] [php] Optional parameter $params declared before required parameter $language is implicitly treated as a required parameter (C:\xampp\htdocs\sekolah\protected\modules\rights\components\Rights.php:133)
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\YiiBase.php(463): include()
+#1 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(142): autoload()
+#2 C:\xampp\htdocs\sekolah\framework\web\CController.php(263): UserModule->beforeControllerAction()
+#3 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): AdminController->run()
+#4 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\sekolah\index.php(13): CWebApplication->run()
+REQUEST_URI=/sekolah/index.php?r=user/admin
+in C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php (142)
+in C:\xampp\htdocs\sekolah\index.php (13)
+2023/02/12 09:23:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sekolah.users' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `users`.
+in C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php (232)
+in C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php (21)
+in C:\xampp\htdocs\sekolah\index.php (13)
+2023/02/12 09:23:02 [error] [exception.CDbException] CDbException: The table "users" for active record class "User" cannot be found in the database. in C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php:2391
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(413): CActiveRecordMetaData->__construct(Object(User))
+#1 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(214): CActiveRecord->getMetaData()
+#2 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(232): CActiveRecord->__call('active', Array)
+#3 C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php(21): UserModule::getAdmins()
+#4 C:\xampp\htdocs\sekolah\framework\web\CController.php(1147): AdminController->accessRules()
+#5 C:\xampp\htdocs\sekolah\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 C:\xampp\htdocs\sekolah\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\sekolah\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): CController->run('')
+#10 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#11 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/sekolah/index.php?r=user/admin
+---
+2023/02/12 09:28:28 [error] [php] include(Profile.php): Failed to open stream: No such file or directory (C:\xampp\htdocs\sekolah\framework\YiiBase.php:463)
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\YiiBase.php(463): include()
+#1 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(397): autoload()
+#2 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(182): model()
+#3 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(231): CActiveFinder->getModel()
+#4 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(300): CActiveFinder->buildJoinTree()
+#5 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(48): CActiveFinder->buildJoinTree()
+#6 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(915): CActiveFinder->__construct()
+#7 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1363): User->getActiveFinder()
+#8 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1478): User->query()
+#9 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(232): User->findAll()
+#10 C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php(21): getAdmins()
+#11 C:\xampp\htdocs\sekolah\framework\web\CController.php(1147): AdminController->accessRules()
+#12 C:\xampp\htdocs\sekolah\framework\web\filters\CInlineFilter.php(58): AdminController->filterAccessControl()
+#13 C:\xampp\htdocs\sekolah\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 C:\xampp\htdocs\sekolah\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): AdminController->runActionWithFilters()
+#16 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): AdminController->run()
+#17 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\sekolah\index.php(13): CWebApplication->run()
+REQUEST_URI=/sekolah/index.php?r=user/admin
+in C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php (232)
+in C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php (21)
+in C:\xampp\htdocs\sekolah\index.php (13)
+2023/02/12 09:30:31 [error] [php] include(UActiveRecord.php): Failed to open stream: No such file or directory (C:\xampp\htdocs\sekolah\framework\YiiBase.php:463)
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\YiiBase.php(463): include()
+#1 C:\xampp\htdocs\sekolah\protected\modules\user\models\Profile.php(3): autoload()
+#2 C:\xampp\htdocs\sekolah\framework\YiiBase.php(463): include()
+#3 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(397): autoload()
+#4 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(182): model()
+#5 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(231): CActiveFinder->getModel()
+#6 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(300): CActiveFinder->buildJoinTree()
+#7 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(48): CActiveFinder->buildJoinTree()
+#8 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(915): CActiveFinder->__construct()
+#9 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1363): User->getActiveFinder()
+#10 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1478): User->query()
+#11 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(232): User->findAll()
+#12 C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php(21): getAdmins()
+#13 C:\xampp\htdocs\sekolah\framework\web\CController.php(1147): AdminController->accessRules()
+#14 C:\xampp\htdocs\sekolah\framework\web\filters\CInlineFilter.php(58): AdminController->filterAccessControl()
+#15 C:\xampp\htdocs\sekolah\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\xampp\htdocs\sekolah\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): AdminController->runActionWithFilters()
+#18 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): AdminController->run()
+#19 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\sekolah\index.php(13): CWebApplication->run()
+REQUEST_URI=/sekolah/index.php?r=user/admin
+in C:\xampp\htdocs\sekolah\protected\modules\user\models\Profile.php (3)
+in C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php (232)
+in C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php (21)
+2023/02/12 09:31:08 [error] [exception.CDbException] CDbException: Active record "User" is trying to select an invalid column "user.lastvisit_at". Note, the column must exist in the table or be an expression with alias. in C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php:967
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(1286): CJoinElement->getColumnSelect(Array)
+#1 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(437): CJoinQuery->__construct(Object(CJoinElement), Object(CDbCriteria))
+#2 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#3 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1364): CActiveFinder->query(Object(CDbCriteria), true)
+#4 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(232): CActiveRecord->findAll()
+#6 C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php(21): UserModule::getAdmins()
+#7 C:\xampp\htdocs\sekolah\framework\web\CController.php(1147): AdminController->accessRules()
+#8 C:\xampp\htdocs\sekolah\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\sekolah\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\sekolah\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): CController->run('')
+#13 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#14 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/sekolah/index.php?r=user/admin
+---
+2023/02/12 09:32:38 [error] [exception.CDbException] CDbException: Active record "User" is trying to select an invalid column "user.mobile_number". Note, the column must exist in the table or be an expression with alias. in C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php:967
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(1286): CJoinElement->getColumnSelect(Array)
+#1 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(437): CJoinQuery->__construct(Object(CJoinElement), Object(CDbCriteria))
+#2 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#3 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1364): CActiveFinder->query(Object(CDbCriteria), true)
+#4 C:\xampp\htdocs\sekolah\framework\db\ar\CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\sekolah\protected\modules\user\UserModule.php(232): CActiveRecord->findAll()
+#6 C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php(21): UserModule::getAdmins()
+#7 C:\xampp\htdocs\sekolah\framework\web\CController.php(1147): AdminController->accessRules()
+#8 C:\xampp\htdocs\sekolah\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\sekolah\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\sekolah\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): CController->run('')
+#13 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#14 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/sekolah/index.php?r=user/admin
+---
+2023/02/12 09:33:55 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "user/login". in C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController('user/login')
+#1 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\sekolah\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sekolah/index.php?r=user/login
+---
+2023/02/12 09:34:27 [error] [php] Undefined variable $sortableColumnNamesArray (C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php:39)
+Stack trace:
+#0 C:\xampp\htdocs\sekolah\framework\web\actions\CInlineAction.php(49): AdminController->actionAdmin()
+#1 C:\xampp\htdocs\sekolah\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\sekolah\framework\web\CController.php(286): AdminController->runAction()
+#3 C:\xampp\htdocs\sekolah\framework\web\CController.php(265): AdminController->runActionWithFilters()
+#4 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(282): AdminController->run()
+#5 C:\xampp\htdocs\sekolah\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\xampp\htdocs\sekolah\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\sekolah\index.php(13): CWebApplication->run()
+REQUEST_URI=/sekolah/index.php?r=user/admin
+in C:\xampp\htdocs\sekolah\protected\modules\user\controllers\AdminController.php (39)
+in C:\xampp\htdocs\sekolah\index.php (13)

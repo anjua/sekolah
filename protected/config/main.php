@@ -16,18 +16,53 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.module.*',
+		'ext.EDataTables.*',
+
+		'application.modules.rights.*',
+		'application.modules.rights.models.*',
+		'application.modules.rights.components.*',
+		'application.modules.rights.components.dataproviders.*',
 	),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		/*
+		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		*/
+		
+		'user'=>array(
+			'tableUsers'=>'users',
+			'tableProfiles'=>'profiles',
+			'tableProfileFields'=>'profile_fields',
+			'hash'=>'md5',
+			'sendActivationMail'=>true,
+			'loginNotActive'=>false,
+			'activeAfterRegister'=>false,
+			'autoLogin'=>true,
+			'registrationUrl'=>array('/user/registration'),
+			'recoveryUrl'=>array('/user/recovery'),
+			'loginUrl'=>array('/user/login'),
+			'returnLogoutUrl'=>array('/user/login'),
+		),
+
+		'rights'=>array(
+			'superuserName'=>'Admin',
+			'authenticatedName' => 'Authenticated',  // Name of the authenticated user role. 
+			'userIdColumn' => 'id', // Name of the user id column in the database. 
+			'userNameColumn' => 'username',  // Name of the user name column in the database. 
+			'enableBizRule' => true,  // Whether to enable authorization item business rules. 
+			'enableBizRuleData' => true,   // Whether to enable data for business rules. 
+			'displayDescription' => true,  // Whether to use item description instead of name. 
+			'flashSuccessKey' => 'RightsSuccess', // Key to use for setting success flash messages. 
+			'flashErrorKey' => 'RightsError', // Key to use for setting error flash messages. 
+			'baseUrl' => '/rights', // Base URL for Rights. Change if module is nested.  // Style sheet file to use for Rights. 
+			'debug' => false,
+		),
 	),
 
 	// application components

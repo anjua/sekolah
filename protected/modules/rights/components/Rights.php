@@ -130,7 +130,7 @@ class Rights
 		return self::$_a;
 	}
 
-	public static function t($category, $message, $params=array(), $source=null, $language)
+	public static function t($category, $message, $params=array(), $source=null, $language=null)
 	{
 		return Yii::t('RightsModule'.$category, $message, $params, $source, $language);
 	}
