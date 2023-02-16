@@ -107,20 +107,20 @@ class User extends CActiveRecord
 			$criteria->params		= array(':id' => $this->id, ':email' => $this->email);
 			$user					= User::model()->findAll($criteria);
 
-			$criteria				= new CDbCriteria();
-			$criteria->condition	= 'uid<>:uid AND email=:email AND is_delete=:is_delete';
-			$criteria->params		= array(':uid' => $this->id, ':email' => $this->email, ':is_delete' => 0);
-			$guardians				= Guardians::model()->findAll($criteria);
+			// $criteria				= new CDbCriteria();
+			// $criteria->condition	= 'uid<>:uid AND email=:email AND is_delete=:is_delete';
+			// $criteria->params		= array(':uid' => $this->id, ':email' => $this->email, ':is_delete' => 0);
+			// $guardians				= Guardians::model()->findAll($criteria);
 
-			$criteria				= new CDbCriteria();
-			$criteria->condition	= 'uid<>:uid AND email=:email AND is_deleted=:is_deleted';
-			$criteria->params		= array(':uid' =>  $this->id, ':email' => $this->$attribute, ':is_deleted' => 0);
-			$employee				= Employees::model()->findAll($criteria);
+			// $criteria				= new CDbCriteria();
+			// $criteria->condition	= 'uid<>:uid AND email=:email AND is_deleted=:is_deleted';
+			// $criteria->params		= array(':uid' =>  $this->id, ':email' => $this->$attribute, ':is_deleted' => 0);
+			// $employee				= Employees::model()->findAll($criteria);
 
-			$criteria				= new CDbCriteria();
-			$criteria->condition	= 'uid<>:uid AND email=:email AND is_deleted=:is_deleted';
-			$criteria->params		= array(':uid' => $this->id, ':email' => $this->$attribute, ':is_deleted' => 0);
-			$student 				= StudentsUser::model()->findAll($criteria); //This model is for checking all Students(Both normal & online)
+			// $criteria				= new CDbCriteria();
+			// $criteria->condition	= 'uid<>:uid AND email=:email AND is_deleted=:is_deleted';
+			// $criteria->params		= array(':uid' => $this->id, ':email' => $this->$attribute, ':is_deleted' => 0);
+			// $student 				= StudentsUser::model()->findAll($criteria); //This model is for checking all Students(Both normal & online)
 
 			if ($student != NULL or $employee != NULL or $guardians != NULL or $user != NULL) {
 				$this->addError($attribute, Yii::t("app", "This email address already exists."));
