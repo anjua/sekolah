@@ -29,8 +29,10 @@ class AdminController extends Controller
 
     public function actionAdmin()
     {
-        $model = new User('search');
-        $model->unsetAttributes();
+        $model = User::model()->findAll();
+        //$model->unsetAttributes();
+        if(isset($_GET['User']))
+            $model->attributes=$_GET['User'];
         // $model = new User();
         // var_dump($model);
         // die();

@@ -22,6 +22,14 @@ class RightsModule extends CWebModule
 
     public function init()
     {
+
+        $this->setImport(array(
+			'rights.components.*',
+			'rights.components.behaviors.*',
+			'rights.components.dataproviders.*',
+			'rights.controllers.*',
+			'rights.models.*',
+		));
         $this->setComponents(
             array(
                 'authorizer' => array(
