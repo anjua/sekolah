@@ -29,37 +29,12 @@ class AdminController extends Controller
 
     public function actionAdmin()
     {
-        $criteria = new CDbCriteria;
-        // bro-tip: $_REQUEST is like $_GET and $_POST combined
-        if (isset($_REQUEST['sSearch']) && isset($_REQUEST['sSearch']{0})) {
-            // use operator ILIKE if using PostgreSQL to get case insensitive search
-            $criteria->addSearchCondition('textColumn', $_REQUEST['sSearch'], true, 'AND', 'ILIKE');
-        }
+        $model = new User('search');
+        $model->unsetAttributes();
+        // $model = new User();
+        // var_dump($model);
+        // die();
 
-        $sort = new EDTSort('User', $sortableColumnNamesArray);
-        $sort->defaultOrder = 'id';
-        $pagination = new EDTPagination();
-
-        $dataProvider = new CActiveDataProvider('ModelClass', array(
-            'criteria'      => $criteria,
-            'pagination'    => $pagination,
-            'sort'          => $sort,
-        ));
-
-        $widget = $this->createWidget('ext.EDataTables.EDataTables', array(
-            'id'            => 'products',
-            'dataProvider'  => $dataProvider,
-            'ajaxUrl'       => $this->createUrl('/products/index'),
-            'columns'       => $columns,
-        ));
-        if (!Yii::app()->getRequest()->getIsAjaxRequest()) {
-            $this->render('index', array('widget' => $widget,));
-            return;
-        } else {
-            echo json_encode($widget->getFormattedData(intval($_REQUEST['sEcho'])));
-            Yii::app()->end();
-        }
-
-        
+        $this->render('index', array('model'=>$model));
     }
 }
