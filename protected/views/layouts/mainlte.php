@@ -746,6 +746,8 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
@@ -778,6 +780,20 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/dist/js/demo.js"></script>
+
+    <script>
+  $(function () {
+    $('#user_table').DataTable()
+    // $('#example2').DataTable({
+    //   'paging'      : true,
+    //   'lengthChange': false,
+    //   'searching'   : false,
+    //   'ordering'    : true,
+    //   'info'        : true,
+    //   'autoWidth'   : false
+    // })
+  })
+</script>
 </body>
 
 </html>
