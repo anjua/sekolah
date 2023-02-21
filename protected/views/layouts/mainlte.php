@@ -514,17 +514,17 @@
                     <small><?php echo $this->smallContentHeader; ?></small>
                 </h1>
 
-                <?php if(isset($this->breadcrumbs)):?>
-                <?php $this->widget('zii.widgets.CBreadcrumbs', array(
-                    'tagName'=>'ol',
-                    'htmlOptions'=>array('class'=>'breadcrumb'),
-                    'homeLink'=>'<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>',
-                    'activeLinkTemplate'=>'<li class="active"><a href="{url}">{label}</a></li>',
-                    'inactiveLinkTemplate'=>'<li>{label}</li>',
-                    'separator'=>'',
-                    'links'=>$this->breadcrumbs,
-                )); ?><!-- breadcrumbs -->
-                <?php endif?>
+                <?php if (isset($this->breadcrumbs)) : ?>
+                    <?php $this->widget('zii.widgets.CBreadcrumbs', array(
+                        'tagName' => 'ol',
+                        'htmlOptions' => array('class' => 'breadcrumb'),
+                        'homeLink' => '<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>',
+                        'activeLinkTemplate' => '<li class="active"><a href="{url}">{label}</a></li>',
+                        'inactiveLinkTemplate' => '<li>{label}</li>',
+                        'separator' => '',
+                        'links' => $this->breadcrumbs,
+                    )); ?><!-- breadcrumbs -->
+                <?php endif ?>
                 <!-- <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
@@ -747,7 +747,7 @@
     <!-- jQuery UI 1.11.4 -->
     <!-- <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/bower_components/jquery-ui/jquery-ui.min.js"></script> -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    
+
     <!-- <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script> -->
@@ -784,18 +784,45 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/adminlte/dist/js/demo.js"></script>
 
     <script>
-  $(function () {
-    $('#user_table').DataTable()
-    // $('#example2').DataTable({
-    //   'paging'      : true,
-    //   'lengthChange': false,
-    //   'searching'   : false,
-    //   'ordering'    : true,
-    //   'info'        : true,
-    //   'autoWidth'   : false
-    // })
-  })
-</script>
+        $(function() {
+            $('#user_table').DataTable({
+                // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                "paging": true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                "autoWidth": true,
+                // "columnDefs": [{
+                //     "orderable": false,
+                //     "targets": 5
+                // }],
+                "buttons": [
+                    'colvis',
+                    'copyHtml5',
+                    'csvHtml5',
+                    'excelHtml5',
+                    'pdfHtml5',
+                    'print',
+                ]
+            })
+
+            $('.dt-edit').each(function(){
+                $(this).on('click', function(evt){
+                    $this=$(this);
+                    var dtRow = $this.parents('tr');
+                })
+            })
+            // $('#example2').DataTable({
+            //   'paging'      : true,
+            //   'lengthChange': false,
+            //   'searching'   : false,
+            //   'ordering'    : true,
+            //   'info'        : true,
+            //   'autoWidth'   : false
+            // })
+        })
+    </script>
 </body>
 
 </html>
